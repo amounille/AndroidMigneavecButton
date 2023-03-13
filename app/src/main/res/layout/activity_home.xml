@@ -22,7 +22,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:textColor="#00703C"/>
+        android:textColor="@color/blueMigne"/>
 
     <!-- Description de l'application sous le nom -->
     <TextView
@@ -34,7 +34,7 @@
         android:textSize="16sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:textColor="#00703C"/>
+        android:textColor="@color/blueMigne"/>
 
     <!-- Boutons pour les parcours -->
     <Button
@@ -47,7 +47,10 @@
         android:layout_marginTop="32dp"
         android:layout_marginLeft="32dp"
         android:layout_alignParentStart="true"
-        android:onClick="launchMainActivity"/>
+        android:onClick="launchMainActivity"
+        android:backgroundTint="@color/blueMigne"
+        android:drawableLeft="@drawable/travel" />
+<!--    color dans fichier xml color.xml-->
 
     <Button
         android:id="@+id/button2"
@@ -58,6 +61,8 @@
         android:drawablePadding="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginRight="32dp"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/blueMigne"
+        />
 
 </RelativeLayout>
