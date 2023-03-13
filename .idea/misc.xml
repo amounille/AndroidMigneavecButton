@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/pinsmarker.xml" value="0.1465" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.17755825734549138" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
       </map>
     </option>

@@ -13,22 +13,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends AppCompatActivity  {
     private Button boutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LinearLayout l = new LinearLayout(this);
-        boutton = new Button(this);
-        boutton.setText("Map");
-        boutton.setOnClickListener(this);
-        l.addView(boutton);
-        setContentView(l);
+        setContentView(R.layout.activity_home);
+
+
     }
 
-    @Override
-    public void onClick(View v) {
+    public void launchMainActivity(View view) {
         //permet de launch la 2eme actv
         int LAUNCH_SECOND_ACTIVITY = 1;
         Intent i = new Intent(this, MainActivity.class);

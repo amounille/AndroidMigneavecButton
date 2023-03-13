@@ -96,16 +96,22 @@ public class MainActivity extends AppCompatActivity {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
         }
 
-        ArrayList<OverlayItem> items = new ArrayList<>();
-        OverlayItem home = new OverlayItem("Chez hugo", "le Gozo",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
-        Drawable m = home.getMarker(0);
+       ArrayList<OverlayItem> items = new ArrayList<>();
+       OverlayItem home = new OverlayItem("Chez hugo", "l'eglise",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
+       Drawable m = home.getMarker(0);
 
-        items.add(home);
-        items.add(new OverlayItem("Resto","Chez loic", new GeoPoint(46.6333,0.3168)));
+       items.add(home);
+       items.add(new OverlayItem("Resto","Chez loic", new GeoPoint(46.6333,0.3168)));
 
-
-        map.setBuiltInZoomControls(true); //zoom avec 2 doigts
-        map.setMultiTouchControls(true); //zoom avec 2 doigts
+//        // Créer un marqueur
+//        Drawable Marker = ContextCompat.getDrawable(this, R.drawable.pinsmarker);
+//        // Marker 1 station marquage au sol
+//        Marker marker1 = new Marker(map);
+//        marker1.setPosition(new GeoPoint(46.634335,0.331986));
+//        marker1.setTitle("Station 1");
+//        marker1.setSnippet("Bois 1");
+//        marker1.setIcon(Marker);
+//        map.getOverlays().add(marker1);
 
         ScaleBarOverlay myScaleBarOverlay = new ScaleBarOverlay(map); // barre en haut a gauche de scale
         map.getOverlays().add(myScaleBarOverlay);                     // barre en haut a gauche de scale
