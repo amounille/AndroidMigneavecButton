@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         map.setTileSource(TileSourceFactory.MAPNIK); //render
         map.setBuiltInZoomControls( true );         //zoomable
-
+        map.setMultiTouchControls(true);
 
 
         IMapController mapController = map.getController();
@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
        ArrayList<OverlayItem> items = new ArrayList<>();
        OverlayItem home = new OverlayItem("Chez hugo", "l'eglise",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
        Drawable m = home.getMarker(0);
-
        items.add(home);
        items.add(new OverlayItem("Resto","Chez loic", new GeoPoint(46.6333,0.3168)));
 

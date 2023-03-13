@@ -63,6 +63,7 @@
         android:layout_marginRight="32dp"
         android:layout_alignParentEnd="true"
         android:backgroundTint="@color/blueMigne"
+        android:drawableLeft="@drawable/travel"
         />
 
 </RelativeLayout>
