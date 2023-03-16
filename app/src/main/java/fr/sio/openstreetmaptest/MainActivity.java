@@ -96,21 +96,33 @@ public class MainActivity extends AppCompatActivity {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
         }
 
-       ArrayList<OverlayItem> items = new ArrayList<>();
-       OverlayItem home = new OverlayItem("Chez hugo", "l'eglise",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
-       Drawable m = home.getMarker(0);
-       items.add(home);
-       items.add(new OverlayItem("Resto","Chez loic", new GeoPoint(46.6333,0.3168)));
+      ArrayList<OverlayItem> items = new ArrayList<>();
+      OverlayItem home = new OverlayItem("Chez hugo", "l'eglise",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
+      Drawable m = home.getMarker(0);
+      items.add(home);
+      items.add(new OverlayItem("Resto","Chez loic", new GeoPoint(46.6333,0.3168)));
+
+
 
 //        // Créer un marqueur
-//        Drawable Marker = ContextCompat.getDrawable(this, R.drawable.pinsmarker);
+//        Drawable Marker = ContextCompat.getDrawable(this, R.drawable.mappin);
 //        // Marker 1 station marquage au sol
 //        Marker marker1 = new Marker(map);
-//        marker1.setPosition(new GeoPoint(46.634335,0.331986));
-//        marker1.setTitle("Station 1");
-//        marker1.setSnippet("Bois 1");
+//        marker1.setPosition(new GeoPoint(46.6333,0.31800));
+//        marker1.setTitle("Trajet 1");
+//        marker1.setSnippet("Description 1");
 //        marker1.setIcon(Marker);
+//
+//        // Créer un marqueur
+//        Marker marker2 = new Marker(map);
+//        marker2.setPosition(new GeoPoint(46.6333,0.3168));
+//        marker2.setTitle("Trajet 2");
+//        marker2.setSnippet("Description 2");
+//        marker2.setIcon(Marker);
+//
+//        //ajout sur la map
 //        map.getOverlays().add(marker1);
+//        map.getOverlays().add(marker2);
 
         ScaleBarOverlay myScaleBarOverlay = new ScaleBarOverlay(map); // barre en haut a gauche de scale
         map.getOverlays().add(myScaleBarOverlay);                     // barre en haut a gauche de scale

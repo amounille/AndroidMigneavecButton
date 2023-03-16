@@ -1,3 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OpenStreetmapTest</string>
+    <string name="Title">Cheminements Doux</string>
+    <string name="faire">Parcours à faire :</string>
+    <string name="fait">Parcours fait :</string>
+    <string name="rep">Bulle de réponse</string>
+    <string name="rep1">Réponse :</string>
+    <string name="affiche_rep">Nino Ferrer</string>
+    <string name="hist">Explication Historique :</string>
+    <string name="expli">Ceci est une photo de l\'acteur, compositeur Nino Ferrer, auteur de l\'œuvre "Les Petites Filles de bonne famille"</string>
+    <string name="valide">VALIDER</string>
+    <string name="quizz">Quiz</string>
+    <string name="quest">Qui est cet Auteur ?</string>
+    <string name="rep2">A. Jacques Brel</string>
+    <string name="rep3">B. Georges Bressens</string>
+    <string name="rep4">C. B2O</string>
+    <string name="rep5">D. Nino Ferrer</string>
+    <string name="tps">Tps parcours :</string>
+    <string name="nom">Nom Parcours :</string>
+    <string name="theme">Thèmes parcours :</string>
+    <string name="acces">Accéder au parcours</string>
+    <string name="retour">Retour</string>
 </resources>

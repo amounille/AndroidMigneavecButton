@@ -32,4 +32,14 @@ public class HomeActivity extends AppCompatActivity  {
         startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
         //fin permet de launch la 2eme actv
     }
+
+
+    public void launchQuizzActivity(View view) {
+        //permet de launch la 2eme actv
+        int LAUNCH_SECOND_ACTIVITY = 1;
+        Intent i = new Intent(this, QuizzActivity.class);
+        // définir le request_code pour identifier le retour
+        startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
+        //fin permet de launch la 2eme actv
+    }
 }
