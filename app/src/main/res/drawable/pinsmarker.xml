@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <item android:drawable="@drawable/mappin" android:state_pressed="true"-->
+<!--        android:width="1px" android:height="1px"/>-->
+<!--    <item android:drawable="@drawable/mappin" android:state_focused="true"-->
+<!--        android:width="1px" android:height="1px"/>-->
+<!--    <item android:drawable="@drawable/mappin" android:state_selected="true"-->
+<!--        android:width="1px" android:height="1px"/>-->
+<!--    <item android:drawable="@drawable/mappin"-->
+<!--        android:width="1px" android:height="1px"/>-->
+</selector>
