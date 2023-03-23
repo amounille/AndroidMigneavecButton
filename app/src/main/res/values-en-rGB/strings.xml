@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Title">Soft Path</string>
+    <string name="faire">Course to do :</string>
+    <string name="fait">Course done :</string>
+    <string name="rep">Answer bubble</string>
+    <string name="rep1">Answer :</string>
+    <string name="affiche_rep">Nino Ferrer</string>
+    <string name="hist">Explanation History :</string>
+    <string name="expli">This is a photo of the actor, composer Nino Ferrer, author of the work "Les Petites Filles de bonne famille"</string>
+    <string name="valide">VALIDATE</string>
+    <string name="quizz">Quiz</string>
+    <string name="quest">Who is this Author ?</string>
+    <string name="rep2">A.Jacques Brel</string>
+    <string name="rep3">B.Georges Bressens</string>
+    <string name="rep4">C.B2O</string>
+    <string name="rep5">D.Nino Ferrer</string>
+    <string name="tps">Course time :</string>
+    <string name="nom">Name of the Course :</string>
+    <string name="theme">Topics Course :</string>
+    <string name="acces">Access to the course</string>
+    <string name="retour">Return</string>
+    <string name="aide">Help</string>
+</resources>

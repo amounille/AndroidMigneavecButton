@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Title">Sanfte Wege</string>
+    <string name="faire">Noch zu absolvierende Strecke :</string>
+    <string name="fait">Strecke absolviert :</string>
+    <string name="rep">Antwortbulle</string>
+    <string name="rep1">Antwort :</string>
+    <string name="affiche_rep">Nino Ferrer</string>
+    <string name="hist">Erklärung Hintergrund :</string>
+    <string name="expli">Dies ist ein Foto des Schauspielers, Komponisten und Autors Nino Ferrer "Les Petites Filles de bonne famille"</string>
+    <string name="valide">BESTÄTIGEN</string>
+    <string name="quizz">Quizz</string>
+    <string name="quest">Wer ist dieser Autor ?</string>
+    <string name="rep2">A.Jacques Brel</string>
+    <string name="rep3">B.Georges Bressens</string>
+    <string name="rep4">C.B2O</string>
+    <string name="rep5">D.Nino Ferrer</string>
+    <string name="tps">Zeit auf der Strecke Strecke</string>
+    <string name="nom">Name Strecke : </string>
+    <string name="theme">Themen Strecke : </string>
+    <string name="acces">Zugang zum Strecke</string>
+    <string name="retour">Zurük</string>
+    <string name="aide">Help</string>
+</resources>

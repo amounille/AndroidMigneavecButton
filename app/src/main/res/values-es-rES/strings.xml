@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Title">Senderos Suaves</string>
+    <string name="faire">Itinerario a seguir:</string>
+    <string name="fait">Ruta tomada :</string>
+    <string name="rep">Burbuja de respuesta</string>
+    <string name="rep1">Respuesta :</string>
+    <string name="affiche_rep">Nino Ferrer</string>
+    <string name="hist">Explcación Antecedentes :</string>
+    <string name="expli">Esta es una foto del actor, compositor Nino Ferrer, autor de la obra "Les Petites Filles de bonne famille"</string>
+    <string name="valide">VALIDAR</string>
+    <string name="quizz">Quiz</string>
+    <string name="quest">¿ Quién es este Autor ?</string>
+    <string name="rep2">A.Jacques Brel</string>
+    <string name="rep3">B.Georges Bressens</string>
+    <string name="rep4">C.B2O</string>
+    <string name="rep5">D.Nino Ferrer</string>
+    <string name="tps">Duración del curso :</string>
+    <string name="nom">Nombre del curso :</string>
+    <string name="theme">Temas del curso :</string>
+    <string name="acces">Ir al curso</string>
+    <string name="retour">Volver</string>
+    <string name="aide">Help</string>
+</resources>

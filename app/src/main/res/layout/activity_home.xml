@@ -37,7 +37,7 @@
                 android:layout_gravity="center"
                 android:text="@string/Title"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/green"
                 android:textStyle="bold"/>
 
         </LinearLayout>
@@ -98,7 +98,9 @@
                     android:onClick="launchMainActivity"
                     android:backgroundTint="@color/blueMigne"
                     android:drawableLeft="@drawable/travel"
-                    tools:ignore="OnClick" />
+                    tools:ignore="OnClick"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold"/>
 
 
             </LinearLayout>
@@ -146,7 +148,9 @@
                     android:onClick="launchQuizzActivity"
                     android:backgroundTint="@color/blueMigne"
                     android:drawableLeft="@drawable/travel"
-                    tools:ignore="OnClick"/>
+                    tools:ignore="OnClick"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -204,7 +208,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/acces" />
+                    android:text="@string/acces"
+                    android:drawableLeft="@drawable/travel"
+                    tools:ignore="OnClick"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
 
             </LinearLayout>
             <Space
@@ -247,7 +255,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/acces" />
+                    android:text="@string/acces"
+                    android:drawableLeft="@drawable/travel"
+                    tools:ignore="OnClick"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </LinearLayout>
