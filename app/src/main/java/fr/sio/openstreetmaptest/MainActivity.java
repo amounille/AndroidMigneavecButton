@@ -97,20 +97,28 @@ public class MainActivity extends AppCompatActivity {
         }
 
        ArrayList<OverlayItem> items = new ArrayList<>();
-       OverlayItem home = new OverlayItem("Chez hugo", "l'eglise",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
-       Drawable m = home.getMarker(0);
-       items.add(home);
-       items.add(new OverlayItem("Resto","Chez loic", new GeoPoint(46.6333,0.3168)));
+//       OverlayItem home = new OverlayItem("Chez hugo", "l'eglise",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
+//       Drawable m = home.getMarker(0);
+//       items.add(home);
+//       items.add(new OverlayItem("Resto","Chez loic", new GeoPoint(46.6333,0.3168)));
+//
+//       Créer un marqueur
+        Drawable Marker = ContextCompat.getDrawable(this, R.drawable.pinsmarker);
+        // Marker 1 station marquage au sol
+        Marker marker1 = new Marker(map);
+        marker1.setPosition(new GeoPoint(46.6333,0.31800));
+        marker1.setTitle("Station 1");
+        marker1.setSnippet("Bois 1");
+        marker1.setIcon(Marker);
+        map.getOverlays().add(marker1);
 
-//        // Créer un marqueur
-//        Drawable Marker = ContextCompat.getDrawable(this, R.drawable.pinsmarker);
-//        // Marker 1 station marquage au sol
-//        Marker marker1 = new Marker(map);
-//        marker1.setPosition(new GeoPoint(46.634335,0.331986));
-//        marker1.setTitle("Station 1");
-//        marker1.setSnippet("Bois 1");
-//        marker1.setIcon(Marker);
-//        map.getOverlays().add(marker1);
+        // Marker 2 station marquage au sol
+        Marker marker2 = new Marker(map);
+        marker2.setPosition(new GeoPoint(46.6333,0.3168));
+        marker2.setTitle("Station 2");
+        marker2.setSnippet("Bois 2");
+        marker2.setIcon(Marker);
+        map.getOverlays().add(marker2);
 
         ScaleBarOverlay myScaleBarOverlay = new ScaleBarOverlay(map); // barre en haut a gauche de scale
         map.getOverlays().add(myScaleBarOverlay);                     // barre en haut a gauche de scale
@@ -120,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         map.getOverlays().add(mCompassOverlay); // boussole
 
 
-        //affichage des overlays OverlayItem home = new OverlayItem("Chez hugo", "le Gozo",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
+//        affichage des overlays OverlayItem home = new OverlayItem("Chez hugo", "le Gozo",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
 
         ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getApplicationContext(), items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
             @Override
