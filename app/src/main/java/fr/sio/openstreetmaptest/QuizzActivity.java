@@ -33,7 +33,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         }
         else if (v == bAide){
             Context context = getApplicationContext();
-            String mess = "Aide";
+            String mess = bAide.getText().toString();
             int duration = Toast.LENGTH_LONG;
             Toast.makeText(context, mess, duration).show();
         }
