@@ -16,7 +16,6 @@ public class reponseActivity extends AppCompatActivity implements View.OnClickLi
         bValider.setOnClickListener(this);
     }
 
-
     @Override
     public void onClick(View v) {
         finish();

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Title">Senderos Suaves</string>
+    <string name="Title">Migné-Aventure</string>
     <string name="faire">Itinerario a seguir:</string>
     <string name="fait">Ruta tomada :</string>
     <string name="rep">Burbuja de respuesta</string>
