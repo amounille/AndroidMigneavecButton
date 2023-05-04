@@ -7,6 +7,7 @@ import androidx.preference.PreferenceManager;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -15,6 +16,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.routing.OSRMRoadManager;
 import org.osmdroid.bonuspack.routing.Road;
@@ -31,6 +35,7 @@ import org.osmdroid.views.overlay.ScaleBarOverlay;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider;
 import org.osmdroid.views.overlay.Polyline;
+import org.osmdroid.views.overlay.infowindow.MarkerInfoWindow;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 
@@ -103,25 +108,39 @@ public class MainActivity extends AppCompatActivity {
 //       items.add(new OverlayItem("Resto","Chez loic", new GeoPoint(46.6333,0.3168)));
 //
 //       Créer un marqueur
-        Drawable Marker = ContextCompat.getDrawable(this, R.drawable.pinsmarker);
+        Drawable marker1Drawable = ContextCompat.getDrawable(this, R.drawable.pinsmarker);
+        Drawable marker2Drawable = ContextCompat.getDrawable(this, R.drawable.quizzpins);
+
         // Marker 1 station marquage au sol
+
+        // Créer un bouton personnalisé
+
         Marker marker1 = new Marker(map);
         marker1.setPosition(new GeoPoint(46.6333,0.31800));
         marker1.setTitle("Station 1");
         marker1.setSnippet("Bois 1");
-        marker1.setIcon(Marker);
+        marker1.setIcon(marker1Drawable);
         map.getOverlays().add(marker1);
 
         // Marker 2 station marquage au sol
         Marker marker2 = new Marker(map);
         marker2.setPosition(new GeoPoint(46.6333,0.3168));
-        marker2.setTitle("Station 2");
-        marker2.setSnippet("Bois 2");
-        marker2.setIcon(Marker);
+        marker2.setIcon(marker2Drawable);
         map.getOverlays().add(marker2);
 
         ScaleBarOverlay myScaleBarOverlay = new ScaleBarOverlay(map); // barre en haut a gauche de scale
         map.getOverlays().add(myScaleBarOverlay);                     // barre en haut a gauche de scale
+
+        // Définir un listener de clic sur le Marker 2
+        marker2.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker, MapView mapView) {
+                // Lancer l'activité QuizzActivity au clic sur le Marker
+                Intent intent = new Intent(getApplicationContext(), QuizzActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        });
 
         CompassOverlay mCompassOverlay = new CompassOverlay(getApplicationContext(), new InternalCompassOrientationProvider(getApplicationContext()), map); // boussole
         mCompassOverlay.enableCompass(); // boussole
@@ -176,9 +195,9 @@ public class MainActivity extends AppCompatActivity {
             RoadManager roadManager = new OSRMRoadManager(context, null);
             ArrayList<GeoPoint> waypoints = new ArrayList<GeoPoint>();
 
-            GeoPoint startPoint = new GeoPoint(46.627367, 0.309256); //start point
+            GeoPoint startPoint = new GeoPoint(46.6333, 0.31800); //start point
             waypoints.add(startPoint);
-            GeoPoint endPoint = new GeoPoint(46.6333,0.31800);
+            GeoPoint endPoint = new GeoPoint(46.6333,0.3168);
             waypoints.add(endPoint);
 //            GeoPoint middlepoint = new GeoPoint(46.5802596,0.340196);
 //            waypoints.add(middlepoint);
