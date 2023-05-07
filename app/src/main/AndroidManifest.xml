@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="fr.sio.openstreetmaptest">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,13 +19,16 @@
         android:theme="@style/Theme.OpenStreetmapTest"
         tools:targetApi="31">
         <activity
+            android:name=".DatabaseHelper"
+            android:exported="false" />
+        <activity
+            android:name=".QuizzActivity"
+            android:exported="false" />
+        <activity
             android:name=".reponseActivity"
             android:exported="false" />
         <activity
             android:name=".ReponseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".QuizzActivity"
             android:exported="false" />
         <activity
             android:name=".Quizz"
@@ -40,10 +48,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

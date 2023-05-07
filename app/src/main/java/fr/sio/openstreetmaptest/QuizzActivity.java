@@ -2,41 +2,54 @@ package fr.sio.openstreetmaptest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
-public class QuizzActivity extends AppCompatActivity implements View.OnClickListener{
-    Button bValider;
-    Button bRetour;
-    Button bAide;
+import java.util.List;
+
+public class QuizzActivity extends AppCompatActivity {
+
+    private DatabaseHelper dbHelper;
+    private LinearLayout questionContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz);
-        bValider = findViewById(R.id.Valider1);
-        bRetour = findViewById(R.id.Retour);
-        bAide = findViewById(R.id.aide);
-        bValider.setOnClickListener(this);
-        bRetour.setOnClickListener(this);
-        bAide.setOnClickListener(this);
+
+        dbHelper = new DatabaseHelper(this);
+        questionContainer = findViewById(R.id.question_container);
+
+        List<Question> questions = dbHelper.getAllQuestions();
+
+        for (Question question : questions) {
+            // Créer la vue de question et de réponse
+            View questionView = getLayoutInflater().inflate(R.layout.question_layout, null);
+            TextView questionTextView = questionView.findViewById(R.id.question_textview);
+            questionTextView.setText(question.getText());
+            RadioGroup answersRadioGroup = questionView.findViewById(R.id.answers_radiogroup);
+
+            // Ajouter les réponses à la vue de question
+            List<Answer> answers = dbHelper.getAnswersForQuestion(question.getId());
+            for (Answer answer : answers) {
+                RadioButton radioButton = new RadioButton(this);
+                radioButton.setText(answer.getText());
+                radioButton.setTag(answer.getId());
+                answersRadioGroup.addView(radioButton);
+            }
+
+            // Ajouter la vue de question et de réponse au conteneur
+            questionContainer.addView(questionView);
+        }
     }
 
     @Override
-    public void onClick(View v) {
-        if (v == bValider){
-            Intent i = new Intent(this, reponseActivity.class);
-            startActivity(i);
-        }
-        else if (v == bAide){
-            Context context = getApplicationContext();
-            String mess = bAide.getText().toString();
-            int duration = Toast.LENGTH_LONG;
-            Toast.makeText(context, mess, duration).show();
-        }
-        else if (v == bRetour){ finish(); }
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelper.close();
     }
 }
