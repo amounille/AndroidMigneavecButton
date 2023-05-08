@@ -7,8 +7,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -19,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE question (id INTEGER PRIMARY KEY, text TEXT)";
 
     private static final String CREATE_TABLE_ANSWER =
-            "CREATE TABLE answer (id INTEGER PRIMARY KEY, question_id INTEGER, text TEXT, " +
+            "CREATE TABLE answer (id INTEGER PRIMARY KEY, question_id INTEGER, text TEXT,is_correct INTEGER, " +
                     "FOREIGN KEY(question_id) REFERENCES question(id))";
 
     public DatabaseHelper(Context context) {
@@ -39,23 +42,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values = new ContentValues();
         values.put("question_id", questionId);
         values.put("text", "Paris");
+        values.put("is_correct", 1);
         db.insert("answer", null, values);
 
         values = new ContentValues();
         values.put("question_id", questionId);
         values.put("text", "London");
+        values.put("is_correct", 0);
         db.insert("answer", null, values);
 
         values = new ContentValues();
         values.put("question_id", questionId);
         values.put("text", "Berlin");
+        values.put("is_correct", 0);
         db.insert("answer", null, values);
 
         values = new ContentValues();
         values.put("question_id", questionId);
         values.put("text", "Rome");
+        values.put("is_correct", 0);
         db.insert("answer", null, values);
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -93,5 +101,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return answers;
     }
+
+    public boolean isAnswerCorrect(int answerId) {
+        SQLiteDatabase db = getReadableDatabase();
+        String selection = "id=? AND question_id=(SELECT question_id FROM answer WHERE id=?)";
+        String[] selectionArgs = {String.valueOf(answerId), String.valueOf(answerId)};
+        Cursor cursor = db.query("answer", null, selection, selectionArgs, null, null, null);
+        boolean isCorrect = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return isCorrect;
+    }
+
 }
 

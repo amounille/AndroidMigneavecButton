@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         ScaleBarOverlay myScaleBarOverlay = new ScaleBarOverlay(map); // barre en haut a gauche de scale
         map.getOverlays().add(myScaleBarOverlay);                     // barre en haut a gauche de scale
 
-//         Définir un listener de clic sur le Marker 2
+        //Définir un listener de clic sur le Marker 2
         marker2.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker, MapView mapView) {
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         map.getOverlays().add(mCompassOverlay); // boussole
 
 
-//        affichage des overlays OverlayItem home = new OverlayItem("Chez hugo", "le Gozo",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
+        //affichage des overlays OverlayItem home = new OverlayItem("Chez hugo", "le Gozo",new GeoPoint(46.6333,0.31800)); // ajout d'un point sur la carte
 
         ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getApplicationContext(), items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
             @Override
@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
         mOverlay.setFocusItemsOnTap(true);
         map.getOverlays().add(mOverlay);
+
     }
 
     // requete http recuperation de la road
