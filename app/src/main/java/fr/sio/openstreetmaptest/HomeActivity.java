@@ -21,8 +21,6 @@ public class HomeActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
-
     }
 
     public void launchMainActivity(View view) {

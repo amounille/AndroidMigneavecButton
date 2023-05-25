@@ -40,6 +40,7 @@ import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         Configuration.getInstance().load( getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
@@ -112,22 +114,35 @@ public class MainActivity extends AppCompatActivity {
         Drawable marker2Drawable = ContextCompat.getDrawable(this, R.drawable.quizzpins);
 
         // Marker 1 station marquage au sol
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        // Créer un bouton personnalis
 
-        // Créer un bouton personnalisé
 
         Marker marker1 = new Marker(map);
-        marker1.setPosition(new GeoPoint(46.6333,0.31800));
-        marker1.setTitle("Station 1");
-        marker1.setSnippet("Bois 1");
+        double latitude = 46.6333;
+        double longitude = 0.31800;
+        String nom = "Station 1";
+        String description = "Bois 1";
+        if (!dbHelper.coordExist(latitude, longitude)) {
+            dbHelper.ajouterCoordonnees(latitude, longitude, nom, description);
+        }
+        marker1.setPosition(new GeoPoint(latitude, longitude));
+        marker1.setTitle(nom);
+        marker1.setSnippet(description);
         marker1.setIcon(marker1Drawable);
         map.getOverlays().add(marker1);
 
-        // Marker 2 station marquage au sol
+
+// Marker 2 station marquage au sol
         Marker marker2 = new Marker(map);
-        marker2.setPosition(new GeoPoint(46.6333,0.3168));
+        double latitude2 = 46.6333;
+        double longitude2 = 0.3168;
+        if (!dbHelper.coordExist(latitude2, longitude2)) {
+            dbHelper.ajouterCoordonnees(latitude2, longitude2, null, null);
+        }
+        marker2.setPosition(new GeoPoint(latitude2, longitude2));
         marker2.setIcon(marker2Drawable);
         map.getOverlays().add(marker2);
-
         ScaleBarOverlay myScaleBarOverlay = new ScaleBarOverlay(map); // barre en haut a gauche de scale
         map.getOverlays().add(myScaleBarOverlay);                     // barre en haut a gauche de scale
 

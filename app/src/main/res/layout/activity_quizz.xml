@@ -12,13 +12,15 @@
         android:orientation="vertical"
         tools:ignore="MissingConstraints" >
     </LinearLayout>
-        <Button
-            android:id="@+id/validate_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Valider"
-            android:layout_gravity="center_horizontal"
-            tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/validate_button"
+        android:layout_width="395dp"
+        android:layout_height="46dp"
+        android:text="Valider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

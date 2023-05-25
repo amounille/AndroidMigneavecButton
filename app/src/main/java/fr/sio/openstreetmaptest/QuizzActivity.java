@@ -69,7 +69,6 @@ public class QuizzActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
     private int getSelectedAnswerId() {
         for (int i = 0; i < questionContainer.getChildCount(); i++) {

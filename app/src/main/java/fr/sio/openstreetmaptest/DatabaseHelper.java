@@ -6,6 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 
 
 import java.util.ArrayList;
@@ -15,16 +18,18 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "quizz.db";
+    private static final String DATABASE_NAME = "database.db";
     private static final int DATABASE_VERSION = 1;
 
     private static final String CREATE_TABLE_QUESTION =
             "CREATE TABLE question (id INTEGER PRIMARY KEY, text TEXT)";
 
     private static final String CREATE_TABLE_ANSWER =
-            "CREATE TABLE answer (id INTEGER PRIMARY KEY, question_id INTEGER, text TEXT,is_correct INTEGER, " +
+            "CREATE TABLE answer (id INTEGER PRIMARY KEY, question_id INTEGER, text TEXT, is_correct INTEGER, " +
                     "FOREIGN KEY(question_id) REFERENCES question(id))";
 
+    private static final String CREATE_TABLE_COORDONEES  =
+            "CREATE TABLE coordinates (id INTEGER PRIMARY KEY, latitude REAL, longitude REAL, nom TEXT, description TEXT)";
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -33,10 +38,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_QUESTION);
         db.execSQL(CREATE_TABLE_ANSWER);
+        db.execSQL(CREATE_TABLE_COORDONEES);
 
         // Insert some sample data
         ContentValues values = new ContentValues();
-        values.put("text", "What is the capital of France?");
+        values.put("text", "Qu'elle est la capital de la France?");
         long questionId = db.insert("question", null, values);
 
         values = new ContentValues();
@@ -47,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         values = new ContentValues();
         values.put("question_id", questionId);
-        values.put("text", "London");
+        values.put("text", "Londre");
         values.put("is_correct", 0);
         db.insert("answer", null, values);
 
@@ -64,12 +70,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("answer", null, values);
     }
 
-
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Upgrade policy not implemented
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
     }
 
+    // Quiz DB
     public List<Question> getAllQuestions() {
         List<Question> questions = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
@@ -104,14 +110,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean isAnswerCorrect(int answerId) {
         SQLiteDatabase db = getReadableDatabase();
-        String selection = "id=? AND question_id=(SELECT question_id FROM answer WHERE id=?)";
-        String[] selectionArgs = {String.valueOf(answerId), String.valueOf(answerId)};
+        String selection = "id=? AND is_correct=1";
+        String[] selectionArgs = {String.valueOf(answerId)};
         Cursor cursor = db.query("answer", null, selection, selectionArgs, null, null, null);
         boolean isCorrect = cursor.getCount() > 0;
         cursor.close();
         db.close();
         return isCorrect;
     }
+    // Fin Quiz DB
+    // Coordonnees DB
+    public void ajouterCoordonnees(double latitude, double longitude, String nom, String description) {
+        SQLiteDatabase db = getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put("latitude", latitude);
+        values.put("longitude", longitude);
+        values.put("nom", nom);
+        values.put("description", description);
+
+        db.insert("coordinates", null, values);
+        db.close();
+    }
+
+    public List<Coordonnee> getCoordinates() {
+        List<Coordonnee> coordonnees = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {"latitude", "longitude", "nom", "description"};
+        Cursor cursor = db.query("coordinates", projection, null, null, null, null, null);
+
+        while (cursor.moveToNext()) {
+            double latitude = cursor.getDouble(cursor.getColumnIndexOrThrow("latitude"));
+            double longitude = cursor.getDouble(cursor.getColumnIndexOrThrow("longitude"));
+            String nom = cursor.getString(cursor.getColumnIndexOrThrow("nom"));
+            String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+            coordonnees.add(new Coordonnee(latitude, longitude, nom, description));
+        }
+
+        cursor.close();
+        db.close();
+
+        return coordonnees;
+    }
+    // verfie si les coordonée sont deja dans la bdd
+    public boolean coordExist(double latitude, double longitude) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM coordinates WHERE latitude = ? AND longitude = ?";
+        String[] selectionArgs = {String.valueOf(latitude), String.valueOf(longitude)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        boolean exist = cursor.moveToFirst();
+        cursor.close();
+
+        return exist;
+    }
+
+    //Fin Coordonnees DB
 }
 
