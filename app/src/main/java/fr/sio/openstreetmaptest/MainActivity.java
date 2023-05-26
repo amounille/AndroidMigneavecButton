@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 myLocationOverlay.setDrawAccuracyEnabled(true);
                 map.getController().animateTo(point);
 
-
             }
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {}

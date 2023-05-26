@@ -68,6 +68,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("text", "Rome");
         values.put("is_correct", 0);
         db.insert("answer", null, values);
+
+        values = new ContentValues();
+        values.put("text", "Qu'elle est la capital de l'espagne ?");
+        long questionId2 = db.insert("question", null, values);
+
+        values = new ContentValues();
+        values.put("question_id", questionId2);
+        values.put("text", "Madrid");
+        values.put("is_correct", 1);
+        db.insert("answer", null, values);
+
+        values = new ContentValues();
+        values.put("question_id", questionId2);
+        values.put("text", "Londre");
+        values.put("is_correct", 0);
+        db.insert("answer", null, values);
+
+        values = new ContentValues();
+        values.put("question_id", questionId2);
+        values.put("text", "Berlin");
+        values.put("is_correct", 0);
+        db.insert("answer", null, values);
+
+        values = new ContentValues();
+        values.put("question_id", questionId2);
+        values.put("text", "Rome");
+        values.put("is_correct", 0);
+        db.insert("answer", null, values);
     }
 
     @Override

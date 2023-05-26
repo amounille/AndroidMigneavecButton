@@ -3,6 +3,7 @@ package fr.sio.openstreetmaptest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,74 +17,159 @@ import android.widget.Toast;
 
 import java.util.List;
 
+
+
 public class QuizzActivity extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
-    private LinearLayout questionContainer;
+    private SQLiteDatabase database;
+
+    private Cursor cursor;
+    private int currentQuestionIndex = 0;
+    private TextView questionTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz);
 
         dbHelper = new DatabaseHelper(this);
-        questionContainer = findViewById(R.id.question_container);
+        questionTextView = findViewById(R.id.question_text); // Assurez-vous que vous avez un TextView avec l'ID "question_textview" dans votre layout
 
-        List<Question> questions = dbHelper.getAllQuestions();
+        startQuiz(); // Ajoutez cet appel pour démarrer le quiz
+    }
 
-        for (Question question : questions) {
-            // Créer la vue de question et de réponse
-            View questionView = getLayoutInflater().inflate(R.layout.question_layout, null);
-            TextView questionTextView = questionView.findViewById(R.id.question_textview);
-            questionTextView.setText(question.getText());
-            RadioGroup answersRadioGroup = questionView.findViewById(R.id.answers_radiogroup);
 
-            // Ajouter les réponses à la vue de question
-            List<Answer> answers = dbHelper.getAnswersForQuestion(question.getId());
+    // Déclarez ces variables en tant que membres de votre classe
+
+
+    // Méthode pour initialiser la base de données et le curseur
+    private void initDatabase() {
+        // Initialisez votre base de données SQLite et obtenez une référence à la base de données
+        database = dbHelper.getReadableDatabase();
+
+        // Récupérez les questions de la base de données dans le curseur
+        String query = "SELECT * FROM question";
+        cursor = database.rawQuery(query, null);
+    }
+
+    // Méthode pour afficher la question actuelle
+    private void displayCurrentQuestion() {
+        if (cursor.moveToPosition(currentQuestionIndex)) {
+            @SuppressLint("Range") String questionText = cursor.getString(cursor.getColumnIndex("text"));
+            questionTextView.setText(questionText);
+
+            @SuppressLint("Range") int questionId = cursor.getInt(cursor.getColumnIndex("id"));
+            List<Answer> answers = dbHelper.getAnswersForQuestion(questionId);
+
+            LinearLayout questionContainer = findViewById(R.id.question_container);
+            questionContainer.removeAllViews();
+
             for (Answer answer : answers) {
-                RadioButton radioButton = new RadioButton(this);
-                radioButton.setText(answer.getText());
-                radioButton.setTag(answer.getId());
-                answersRadioGroup.addView(radioButton);
+                RadioButton answerRadioButton = new RadioButton(this);
+                answerRadioButton.setText(answer.getText());
+                questionContainer.addView(answerRadioButton);
+            }
+        }
+    }
+
+
+    // Méthode pour vérifier la réponse de l'utilisateur
+    public void submitAnswer(View view) {
+        if (cursor.moveToPosition(currentQuestionIndex)) {
+
+            @SuppressLint("Range") long questionId = cursor.getLong(cursor.getColumnIndex("id"));
+
+            LinearLayout questionContainer = findViewById(R.id.question_container);
+            RadioButton selectedRadioButton = null;
+            for (int i = 0; i < questionContainer.getChildCount(); i++) {
+                View childView = questionContainer.getChildAt(i);
+                if (childView instanceof RadioButton) {
+                    RadioButton radioButton = (RadioButton) childView;
+                    if (radioButton.isChecked()) {
+                        selectedRadioButton = radioButton;
+                        break;
+                    }
+                }
             }
 
-            // Ajouter la vue de question et de réponse au conteneur
-            questionContainer.addView(questionView);
-        }
+            if (selectedRadioButton != null) {
+                String selectedAnswer = selectedRadioButton.getText().toString();
+                boolean isCorrect = checkAnswer(questionId, selectedAnswer);
 
-        Button validateButton = findViewById(R.id.validate_button);
-        validateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int selectedAnswerId = getSelectedAnswerId();
-                if (selectedAnswerId == -1) {
-                    Toast.makeText(QuizzActivity.this, "Veuillez sélectionner une réponse", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                boolean isAnswerCorrect = dbHelper.isAnswerCorrect(selectedAnswerId);
-                if (isAnswerCorrect) {
-                    Toast.makeText(QuizzActivity.this, "Bonne réponse !", Toast.LENGTH_SHORT).show();
+                // Affiche un toast indiquant si la réponse est correcte ou incorrecte
+                if (isCorrect) {
+                    showToast("Bonne réponse!");
                 } else {
-                    Toast.makeText(QuizzActivity.this, "Mauvaise réponse...", Toast.LENGTH_SHORT).show();
+                    showToast("Mauvaise réponse!");
                 }
-            }
-        });
-    }
-    private int getSelectedAnswerId() {
-        for (int i = 0; i < questionContainer.getChildCount(); i++) {
-            View questionView = questionContainer.getChildAt(i);
-            RadioGroup answersRadioGroup = questionView.findViewById(R.id.answers_radiogroup);
-            int selectedAnswerId = answersRadioGroup.getCheckedRadioButtonId();
-            if (selectedAnswerId != -1) {
-                return (int) answersRadioGroup.findViewById(selectedAnswerId).getTag();
+
+                // Passe à la question suivante
+                moveToNextQuestion();
+            } else {
+                // Aucune réponse sélectionnée, affichez un message d'erreur
+                showToast("Veuillez sélectionner une réponse");
             }
         }
-        return -1;
     }
+
+
+    // Méthode pour vérifier si la réponse sélectionnée est correcte
+    private boolean checkAnswer(long questionId, String selectedAnswer) {
+        // Ouvrez la base de données
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
+
+        try {
+            String query = "SELECT is_correct FROM answer WHERE id = ? AND text = ?";
+            Cursor answerCursor = database.rawQuery(query, new String[]{String.valueOf(questionId), selectedAnswer});
+
+            boolean isCorrect = false;
+            if (answerCursor.moveToFirst()) {
+                @SuppressLint("Range") int isCorrectValue = answerCursor.getInt(answerCursor.getColumnIndex("is_correct"));
+                isCorrect = (isCorrectValue == 1);
+            }
+
+            answerCursor.close();
+            return isCorrect;
+        } finally {
+            // Fermez la base de données
+            database.close();
+        }
+    }
+
+
+
+    // Méthode pour passer à la question suivante
+    private void moveToNextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < cursor.getCount()) {
+            displayCurrentQuestion();
+        } else {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    // Méthode pour afficher un toast
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    // Appelez cette méthode lorsque vous êtes prêt à commencer le quiz
+    private void startQuiz() {
+        initDatabase();
+        displayCurrentQuestion();
+    }
+
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        dbHelper.close();
+    protected void onStop() {
+        super.onStop();
+        if (database != null) {
+            database.close();
+        }
     }
+
+
 }
