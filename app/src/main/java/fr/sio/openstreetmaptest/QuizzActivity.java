@@ -8,10 +8,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +55,7 @@ public class QuizzActivity extends AppCompatActivity {
     // Méthode pour afficher la question actuelle
     private void displayCurrentQuestion() {
         if (cursor.moveToPosition(currentQuestionIndex)) {
-            @SuppressLint("Range") String questionText = cursor.getString(cursor.getColumnIndex("text"));
+            @SuppressLint("Range") String questionText = cursor.getString(cursor.getColumnIndexOrThrow("text"));
             questionTextView.setText(questionText);
 
             @SuppressLint("Range") int questionId = cursor.getInt(cursor.getColumnIndex("id"));
@@ -73,8 +71,6 @@ public class QuizzActivity extends AppCompatActivity {
             }
         }
     }
-
-
     // Méthode pour vérifier la réponse de l'utilisateur
     public void submitAnswer(View view) {
         if (cursor.moveToPosition(currentQuestionIndex)) {
@@ -114,7 +110,6 @@ public class QuizzActivity extends AppCompatActivity {
         }
     }
 
-
     // Méthode pour vérifier si la réponse sélectionnée est correcte
     private boolean checkAnswer(long questionId, String selectedAnswer) {
         // Ouvrez la base de données
@@ -137,8 +132,6 @@ public class QuizzActivity extends AppCompatActivity {
             database.close();
         }
     }
-
-
 
     // Méthode pour passer à la question suivante
     private void moveToNextQuestion() {

@@ -104,20 +104,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Quiz DB
-    public List<Question> getAllQuestions() {
-        List<Question> questions = new ArrayList<>();
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query("question", null, null, null, null, null, null);
-        while (cursor.moveToNext()) {
-            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("id"));
-            @SuppressLint("Range") String text = cursor.getString(cursor.getColumnIndex("text"));
-            Question question = new Question(id, text);
-            questions.add(question);
-        }
-        cursor.close();
-        db.close();
-        return questions;
-    }
 
     public List<Answer> getAnswersForQuestion(int questionId) {
         List<Answer> answers = new ArrayList<>();
@@ -136,16 +122,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return answers;
     }
 
-    public boolean isAnswerCorrect(int answerId) {
-        SQLiteDatabase db = getReadableDatabase();
-        String selection = "id=? AND is_correct=1";
-        String[] selectionArgs = {String.valueOf(answerId)};
-        Cursor cursor = db.query("answer", null, selection, selectionArgs, null, null, null);
-        boolean isCorrect = cursor.getCount() > 0;
-        cursor.close();
-        db.close();
-        return isCorrect;
-    }
     // Fin Quiz DB
     // Coordonnees DB
     public void ajouterCoordonnees(double latitude, double longitude, String nom, String description) {
