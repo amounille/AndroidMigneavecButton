@@ -2,7 +2,11 @@ package fr.sio.openstreetmaptest;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +25,13 @@ public class HomeActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        TextView textView = findViewById(R.id.textView8);
+        TextView textView2 = findViewById(R.id.textView15);
+        SpannableString content = new SpannableString(textView.getText());
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        content.setSpan(new ForegroundColorSpan(Color.BLACK), 0, content.length(), 0);
+        textView.setText(content);
+        textView2.setText(content);
     }
 
     public void launchMainActivity(View view) {

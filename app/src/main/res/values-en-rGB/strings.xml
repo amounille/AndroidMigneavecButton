@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Title">Migné-Aventure</string>
-    <string name="faire">Course to do :</string>
-    <string name="fait">Course done :</string>
+    <string name="faire">COURSE TO DO :</string>
+    <string name="fait">COURSE DONE :</string>
     <string name="rep">Answer bubble</string>
     <string name="rep1">Answer :</string>
     <string name="affiche_rep">Nino Ferrer</string>

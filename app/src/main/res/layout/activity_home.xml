@@ -4,264 +4,288 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white
+"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="414dp"
-        android:layout_height="733dp"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-2dp">
+        tools:layout_editor_absoluteY="0dp">
+
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="133dp"
-            android:background="@color/gray"
-            android:orientation="vertical">
+            android:layout_width="414dp"
+            android:layout_height="733dp"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-2dp">
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="220dp"
-                android:layout_height="69dp"
-                app:srcCompat="@drawable/logomairie" />
-
-            <Space
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="21dp" />
+                android:layout_height="77dp"
+                android:background="@color/white"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/Title"
-                android:textAlignment="center"
-                android:textColor="@color/green"
-                android:textStyle="bold"/>
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="189dp"
+                    android:layout_height="49dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    app:srcCompat="@drawable/logomairie" />
 
-        </LinearLayout>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="21dp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="266dp"
-            android:background="@color/gray"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/Title"
+                    android:textAlignment="center"
+                    android:textColor="@color/green"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="387dp"
-                android:layout_height="31dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/faire"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                />
+
 
             <LinearLayout
-                android:layout_width="312dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:background="@color/gray1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="93dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="right"
-                    android:layout_weight="1"
-                    android:text="@string/tps"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/nom"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/theme"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:id="@+id/acces1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/acces"
-                    android:onClick="launchMainActivity"
-                    android:backgroundTint="@color/blueMigne"
-                    android:drawableLeft="@drawable/travel"
-                    tools:ignore="OnClick"
-                    android:textColor="@color/orange"
-                    android:textStyle="bold"/>
-
-
-            </LinearLayout>
-            <Space
                 android:layout_width="match_parent"
-                android:layout_height="14dp" />
-            <LinearLayout
-                android:layout_width="312dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:background="@color/gray1"
+                android:layout_height="266dp"
+                android:background="@color/white"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="93dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="right"
-                    android:layout_weight="1"
-                    android:text="@string/tps"
-                    android:textColor="@color/black" />
+                <LinearLayout
+                    android:layout_width="312dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView13"
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="93dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:text="@string/tps"
+                        android:textColor="@color/black" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/blueMigne" />
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/nom"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/theme"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/acces1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/blueMigne"
+                        android:drawableLeft="@drawable/travel"
+                        android:onClick="launchMainActivity"
+                        android:text="@string/acces"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        tools:ignore="OnClick" />
+
+
+                </LinearLayout>
+
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/nom"
-                    android:textColor="@color/black" />
+                    android:layout_height="14dp" />
 
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/theme"
-                    android:textColor="@color/black" />
+                <LinearLayout
+                    android:layout_width="312dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/acces2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/acces"
-                    android:onClick="launchQuizzActivity"
-                    android:backgroundTint="@color/blueMigne"
-                    android:drawableLeft="@drawable/travel"
-                    tools:ignore="OnClick"
-                    android:textColor="@color/orange"
-                    android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="93dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:text="@string/tps"
+                        android:textColor="@color/black" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/blueMigne" />
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/nom"
+                        android:textColor="@color/black" />
 
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/theme"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/acces2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/blueMigne"
+                        android:drawableLeft="@drawable/travel"
+                        android:onClick="launchQuizzActivity"
+                        android:text="@string/acces"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        tools:ignore="OnClick" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="21dp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="265dp"
-            android:background="@color/gray"
-            android:orientation="vertical">
-
             <TextView
                 android:id="@+id/textView15"
-                android:layout_width="392dp"
-                android:layout_height="31dp"
+                android:layout_width="387dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/fait"
-                android:textColor="@color/black" />
-
+                android:textColor="@color/black"/>
             <LinearLayout
-                android:layout_width="312dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:background="@color/gray1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="93dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="right"
-                    android:layout_weight="1"
-                    android:text="@string/tps"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/nom"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/theme"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:id="@+id/acces3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/acces"
-                    android:drawableLeft="@drawable/travel"
-                    tools:ignore="OnClick"
-                    android:textColor="@color/orange"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-            <Space
                 android:layout_width="match_parent"
-                android:layout_height="15dp" />
-            <LinearLayout
-                android:layout_width="312dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:background="@color/gray1"
+                android:layout_height="265dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="93dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="right"
-                    android:layout_weight="1"
-                    android:text="@string/tps"
-                    android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/textView20"
+                <LinearLayout
+                    android:layout_width="312dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="93dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:text="@string/tps"
+                        android:textColor="@color/black" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/blueMigne" />
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/nom"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/theme"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/acces3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/travel"
+                        android:text="@string/acces"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        tools:ignore="OnClick" />
+
+                </LinearLayout>
+
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/nom"
-                    android:textColor="@color/black" />
+                    android:layout_height="15dp" />
 
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/theme"
-                    android:textColor="@color/black" />
+                <LinearLayout
+                    android:layout_width="312dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/acces4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/acces"
-                    android:drawableLeft="@drawable/travel"
-                    tools:ignore="OnClick"
-                    android:textColor="@color/orange"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="93dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:text="@string/tps"
+                        android:textColor="@color/black" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/blueMigne" />
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/nom"
+                        android:textColor="@color/black" />
 
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/theme"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/acces4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/travel"
+                        android:text="@string/acces"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        tools:ignore="OnClick" />
+
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

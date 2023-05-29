@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Title">Migné-Aventure</string>
-    <string name="faire">Parcours à faire :</string>
-    <string name="fait">Parcours fait :</string>
+    <string name="faire">PARCOURS A FAIRE :</string>
+    <string name="fait">PARCOURS FAIT :</string>
     <string name="rep">Bulle de réponse</string>
     <string name="rep1">Réponse :</string>
     <string name="affiche_rep">Nino Ferrer</string>
