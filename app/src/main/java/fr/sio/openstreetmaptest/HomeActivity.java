@@ -25,13 +25,20 @@ public class HomeActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //sub-line
         TextView textView = findViewById(R.id.textView8);
-        TextView textView2 = findViewById(R.id.textView15);
         SpannableString content = new SpannableString(textView.getText());
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         content.setSpan(new ForegroundColorSpan(Color.BLACK), 0, content.length(), 0);
         textView.setText(content);
-        textView2.setText(content);
+
+        TextView textView2 = findViewById(R.id.textView15);
+        SpannableString content2 = new SpannableString(textView2.getText());
+        content2.setSpan(new UnderlineSpan(), 0, content2.length(), 0);
+        content2.setSpan(new ForegroundColorSpan(Color.BLACK), 0, content2.length(), 0);
+        textView2.setText(content2);
+        //fin sub-line
+
     }
 
     public void launchMainActivity(View view) {

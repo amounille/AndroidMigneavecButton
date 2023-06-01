@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         double longitude = 0.31800;
         String nom = "Station 1";
         String description = "Bois 1";
-        if (!dbHelper.coordExist(latitude, longitude)) {
+        if (!dbHelper.pointExist(latitude, longitude)) {
             dbHelper.ajouterCoordonnees(latitude, longitude, nom, description);
         }
         marker1.setPosition(new GeoPoint(latitude, longitude));
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         Marker marker2 = new Marker(map);
         double latitude2 = 46.6333;
         double longitude2 = 0.3168;
-        if (!dbHelper.coordExist(latitude2, longitude2)) {
+        if (!dbHelper.pointExist(latitude2, longitude2)) {
             dbHelper.ajouterCoordonnees(latitude2, longitude2, null, null);
         }
         marker2.setPosition(new GeoPoint(latitude2, longitude2));

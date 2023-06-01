@@ -6,17 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".QuizzActivity">
     <LinearLayout
-        android:id="@+id/question_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
+
         <TextView
             android:id="@+id/question_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/question_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </RadioGroup>
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/aide_button"
+        android:layout_width="395dp"
+        android:layout_height="46dp"
+        android:text="Afficher l'aide"
+        app:layout_constraintBottom_toTopOf="@id/submit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="aide" />
 
 
     <Button

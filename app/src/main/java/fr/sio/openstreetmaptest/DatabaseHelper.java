@@ -22,14 +22,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private static final String CREATE_TABLE_QUESTION =
-            "CREATE TABLE question (id INTEGER PRIMARY KEY, text TEXT)";
+            "CREATE TABLE question (id INTEGER PRIMARY KEY, text TEXT,aide TEXT,culture TEXT)";
 
     private static final String CREATE_TABLE_ANSWER =
             "CREATE TABLE answer (id INTEGER PRIMARY KEY, question_id INTEGER, text TEXT, is_correct INTEGER, " +
                     "FOREIGN KEY(question_id) REFERENCES question(id))";
 
     private static final String CREATE_TABLE_COORDONEES  =
-            "CREATE TABLE coordinates (id INTEGER PRIMARY KEY, latitude REAL, longitude REAL, nom TEXT, description TEXT)";
+            "CREATE TABLE point (id INTEGER PRIMARY KEY, latitude REAL, longitude REAL, nom TEXT, description TEXT)";
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -43,7 +43,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Insert some sample data
         ContentValues values = new ContentValues();
         values.put("text", "Qu'elle est la capital de la France?");
+        values.put("aide", "Test aide 1");
+        values.put("culture", "Culture Paris");
         long questionId = db.insert("question", null, values);
+
 
         values = new ContentValues();
         values.put("question_id", questionId);
@@ -70,7 +73,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("answer", null, values);
 
         values = new ContentValues();
-        values.put("text", "Qu'elle est la capital de l'espagne ?");
+        values.put("text", "Qu'elle est la capital de l'Espagne ?");
+        values.put("aide", "Test aide 2 Espagne");
+        values.put("culture", "Culture Espagne 2");
         long questionId2 = db.insert("question", null, values);
 
         values = new ContentValues();
@@ -96,6 +101,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("text", "Rome");
         values.put("is_correct", 0);
         db.insert("answer", null, values);
+
+
     }
 
     @Override
@@ -133,16 +140,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("nom", nom);
         values.put("description", description);
 
-        db.insert("coordinates", null, values);
+        db.insert("point", null, values);
         db.close();
     }
 
-    public List<Coordonnee> getCoordinates() {
+    public List<Coordonnee> getpoint() {
         List<Coordonnee> coordonnees = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         String[] projection = {"latitude", "longitude", "nom", "description"};
-        Cursor cursor = db.query("coordinates", projection, null, null, null, null, null);
+        Cursor cursor = db.query("point", projection, null, null, null, null, null);
 
         while (cursor.moveToNext()) {
             double latitude = cursor.getDouble(cursor.getColumnIndexOrThrow("latitude"));
@@ -158,10 +165,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return coordonnees;
     }
     // verfie si les coordonée sont deja dans la bdd
-    public boolean coordExist(double latitude, double longitude) {
+    public boolean pointExist(double latitude, double longitude) {
         SQLiteDatabase db = getReadableDatabase();
 
-        String query = "SELECT * FROM coordinates WHERE latitude = ? AND longitude = ?";
+        String query = "SELECT * FROM point WHERE latitude = ? AND longitude = ?";
         String[] selectionArgs = {String.valueOf(latitude), String.valueOf(longitude)};
 
         Cursor cursor = db.rawQuery(query, selectionArgs);

@@ -61,6 +61,7 @@ public class QuizzActivity extends AppCompatActivity {
             @SuppressLint("Range") int questionId = cursor.getInt(cursor.getColumnIndex("id"));
             List<Answer> answers = dbHelper.getAnswersForQuestion(questionId);
 
+
             LinearLayout questionContainer = findViewById(R.id.question_container);
             questionContainer.removeAllViews();
 
@@ -71,10 +72,9 @@ public class QuizzActivity extends AppCompatActivity {
             }
         }
     }
-    // Méthode pour vérifier la réponse de l'utilisateur
+    // Méthode pour vérifier la réponse de l'utilisateur + aide
     public void submitAnswer(View view) {
         if (cursor.moveToPosition(currentQuestionIndex)) {
-
             @SuppressLint("Range") long questionId = cursor.getLong(cursor.getColumnIndex("id"));
 
             LinearLayout questionContainer = findViewById(R.id.question_container);
@@ -144,6 +144,14 @@ public class QuizzActivity extends AppCompatActivity {
             finish();
         }
     }
+    // aide
+    public void aide(View view) {
+        if (cursor.moveToPosition(currentQuestionIndex)) {
+            @SuppressLint("Range") String aideText = cursor.getString(cursor.getColumnIndexOrThrow("aide"));
+            showToast(aideText);
+        }
+    }
+
 
     // Méthode pour afficher un toast
     private void showToast(String message) {
